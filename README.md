@@ -1,0 +1,2 @@
+# photoproject
+Django photoproject
