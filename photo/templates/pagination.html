@@ -1,0 +1,42 @@
+<!--ページネーションのアイコンを左右中央揃えに-->
+<ul class = "pagination"
+    style = "justify-content:center">
+
+    <!--もし前のページがあったら左矢印を出す-->
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link"
+            href = "?page{{page_obj.previous_page_number}}"
+            aria-label="Previous">
+            <span aria-hidden="true">&laquo;
+            </span>
+        </a>
+    </li>
+    {% endif %}
+
+    <!--ページの数だけ繰り返す-->
+    {% for num in page_obj.paginator.page_range %}
+
+    <!--自分が今見ているページはアクティブ(青)で表示-->
+        {% if page_obj.number == num %}
+        <li class="page-item active">
+            <span class="page-link">{{num}}</span>
+        </li>
+        {% else %}
+
+        <li class="page-item">
+            <a class="page-link" href="?page={{num}}">{{num}}</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link"
+            href="?page={{ page_obj.next_page_number }}"
+            aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
